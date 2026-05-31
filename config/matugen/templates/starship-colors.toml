@@ -1,0 +1,60 @@
+format = """
+[](color2)\
+$username\
+[](fg:color1 bg:color2)\
+[linux](bold bg:color1 fg:color2)\
+[](color1)\
+[ ](color4)\
+$directory\
+[ ](color4)\
+$git_branch\
+$git_status\
+[](color2)\
+[󰧞󰧞](fg:color1 bg:color2)\
+[ ](color2)\
+"""
+
+right_format = """
+[](color2)\
+[󰪣 ](bg:color2 fg:color1)\
+[](bg:color2 fg:color1)\
+$cmd_duration\
+[](color1)\
+"""
+
+add_newline = false
+palette     = 'colors'
+
+[palettes.colors]
+color1 = '{{colors.on_primary.default.hex}}'
+color2 = '{{colors.primary.default.hex}}'
+color4 = '{{colors.secondary_container.default.hex}}'
+color5 = '{{colors.tertiary.default.hex}}'
+color6 = '{{colors.red.default.hex}}'
+
+[username]
+show_always = true
+style_user  = "bold italic fg:color1 bg:color2"
+style_root  = "bg:#9A348E"
+format      = '[$user ]($style)'
+disabled    = false
+
+[directory]
+style             = "bold fg:color2 bg:color4"
+format            = "[$path]($style)"
+truncation_length = 3
+truncation_symbol = "󰇘 "
+
+[git_branch]
+symbol = " "
+style  = "color5"
+format = '[$symbol$branch]($style)'
+
+[git_status]
+style  = "color6"
+format = '[$all_status$ahead_behind]($style) '
+
+[cmd_duration]
+min_time = 0
+style    = "bold italic fg:color2 bg:color1"
+format   = '[$duration]($style)'

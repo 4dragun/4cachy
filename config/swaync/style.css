@@ -1,0 +1,163 @@
+@import url("./themes/matuswaync.css");
+
+* {
+  filter: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 30px;
+  font-family: Google Sans Flex;
+}
+
+.close-button {
+  background: transparent;
+  color: transparent;
+}
+
+.close-button:hover { background: transparent; }
+
+/* .floating-notifications {} */
+
+.notification {
+  background: var(--noti-bg);
+  box-shadow: var(--shado-a);
+}
+
+.notification-action {
+  background: var(--common-bg);
+  box-shadow: var(--shado-a);
+  margin: 10px;
+}
+
+.notification-group { background: transparent; }
+
+.control-center {
+  border: var(--border);
+  margin: 10px;
+}
+
+.control-center-list-placeholder { opacity: 0; }
+
+.summary {
+  padding: 7px 0px;
+  font-size: 14px;
+  text-shadow: var(--t-shado);
+}
+
+.body {
+  padding-bottom: 5px;
+  margin-right: 10px;
+}
+
+.image {
+  padding: 3px;
+  margin: 5px 10px;
+  background: var(--common-color-a);
+  border-radius: 999px;
+  box-shadow: var(--shado);
+}
+
+.time { padding: 7px; }
+
+.mpris-overlay button {
+  box-shadow: var(--shado);
+  background: var(--common-color-a);
+  margin: 0px 2px;
+}
+
+.mpris-background { filter: blur(13px); }
+
+.widget-mpris-player {
+  box-shadow: var(--shado-a);
+  border-radius: 50px;
+  margin-bottom: 11px;
+}
+
+.widget-mpris-player button { margin-bottom: 35px; }
+
+.widget-mpris > box > button {
+  margin: 0px -90px;
+  opacity: 0;
+}
+
+.widget-mpris carouselindicatordots { margin-top: -65px; }
+
+.widget-volume button > label {
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.widget-volume button {
+  background: none;
+  padding: 0px;
+  margin-left: -10px;
+}
+
+.widget-backlight, .widget-volume {
+  background: var(--common-bg);
+  margin: 5px 30px;
+  padding: 5px;
+  box-shadow: var(--shado-a);
+}
+
+.widget-backlight label, .widget-volume label {
+  background: var(--common-color-a);
+  padding: 5px 15px 5px 10px;
+  margin-left: 3px;
+  color: var(--common-color);
+  border-radius: 999px;
+  font-size: 17px;
+  box-shadow: var(--shado);
+  text-shadow: var(--t-shado);
+}
+
+.widget-backlight trough, .widget-volume trough {
+  background: var(--common-color-a);
+}
+
+.widget-backlight trough highlight, .widget-volume trough highlight {
+  padding: 4px;
+  background: var(--common-color);
+}
+
+.widget-backlight slider, .widget-volume slider {
+  background: var(--common-color-a);
+  box-shadow: var(--shado);
+}
+
+.widget-title button {
+  padding: 8px 15px;
+  box-shadow: var(--shado);
+  text-shadow: var(--t-shado);
+}
+
+.widget-buttons-grid {
+  margin: 20px 20px 0px 20px;
+  padding: 15px;
+  background: var(--common-bg);
+  box-shadow: var(--shado-a);
+  border-radius: 50px;
+}
+
+.widget-buttons-grid label {
+  padding: 0px 0px 0px 0px;
+  margin: -10px 0px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.widget-buttons-grid button {
+  background: var(--common-color-a);
+  border-radius: 999px;
+  padding: 0px 0px;
+  margin: 3px 1px;
+  color: var(--common-color);
+  box-shadow: var(--shado);
+  text-shadow: var(--t-shado);
+}
+
+.widget-buttons-grid button.toggle:checked {
+  background: var(--common-color);
+  color: var(--noti-bg);
+  border-radius: 999px;
+}

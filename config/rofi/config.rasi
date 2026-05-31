@@ -1,0 +1,10 @@
+configuration {
+  font                : "Google Sans Flex 12";
+  display-drun        : "";
+  drun-display-format : "{name}";
+  show-icons          : true;
+  icon-theme          : "matutela";
+  disable-history     : false;
+}
+
+@theme "./themes/maturofimain.rasi"

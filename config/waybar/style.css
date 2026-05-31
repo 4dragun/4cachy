@@ -1,0 +1,157 @@
+@import "./themes/matuwaybar.css";
+
+* {
+  font-family: Google Sans Flex, JetBrainsMono Nerd Font;
+  font-weight: normal;
+  font-size: 15px;
+  padding: 0;
+}
+
+window#waybar { background: @surface }
+
+#power-profiles-daemon,
+#workspaces,
+#window,
+#privacy,
+#pulseaudio,
+#tray,
+#battery,
+#clock,
+#custom-notification,
+#custom-amixer {
+  background: @surface_container;
+  border-radius: 999px;
+  padding: 0 10px;
+  margin: 4px 2px;
+  color: @secondary;
+  transition: 0.5s;
+}
+
+#power-profiles-daemon:hover,
+#workspaces:hover,
+#window:hover,
+#privacy:hover,
+#pulseaudio:hover,
+#tray:hover,
+#battery:hover,
+#clock:hover,
+#custom-notification:hover,
+#custom-amixer:hover { background: @primary_custom; }
+
+#power-profiles-daemon { color: @primary }
+#power-profiles-daemon.performance {
+  color: @red;
+  background: @red_custom;
+}
+#power-profiles-daemon.power-saver {
+  color: @green;
+  background: @green_custom;
+}
+
+#workspaces { padding: 2px; }
+#workspaces button {
+  color: @primary;
+  background: @primary_custom;
+  border-radius: 999px;
+  margin: 1px 2px;
+  padding: 0 5px;
+  transition: 0.5s
+}
+#workspaces button.active {
+  color: @surface;
+  background: @primary_custom_a;
+  padding: 0 13px;
+}
+#workspaces button.empty {
+  color: @outline;
+  background: none;
+  padding: 0 5px;
+}
+#workspaces button:hover {
+  background: @primary_custom;
+  color: @primary;
+  padding: 0 13px;
+}
+
+/* ✴️ Watch out for consistency in values ✴️ */
+#window {
+  background: none;
+  margin: 4px 0 4px 23px;
+}
+
+#mpris {
+  color: @secondary;
+  font-size: 14px;
+}
+
+#privacy {
+  color: @green;
+  background: none
+}
+
+#tray { background: none }
+
+#battery {
+  background: none;
+  font-size: 14px;
+}
+#battery.charging, #battery.plugged {
+  color: @green;
+  background: @green_custom;
+}
+#battery.warning:not(.charging) {
+  background: @red_custom;
+  color: @red;
+}
+#battery.critical:not(.charging) {
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    background: @red_custom;
+    color: @red;
+  }
+}
+
+/* ✴️ Watch out for consistency in values ✴️ */
+#custom-notification {
+  background: none;
+  margin: 4px 23px 4px 4px;
+}
+
+/* check with main values for consistency 👇️ */
+#backlight {
+  border-radius: 999px 0 0 999px;
+  background: @surface_container;
+  color: @primary;
+  margin: 4px 0 4px 2px;
+  padding: 0 0 0 10px;
+}
+#backlight-slider {
+  background: @surface_container;
+  min-width: 120px;
+  margin: 4px 2px 4px 0;
+  border-radius: 0 999px 999px 0;
+  padding: 0 10px;
+}
+/* check with main values for consistency 👆️ */
+#backlight-slider slider {
+  background: @primary_custom;
+  border: none;
+  box-shadow:none
+}
+#backlight-slider trough {
+  border-radius: 999px;
+  background: @primary_custom;
+}
+#backlight-slider highlight {
+  background: @primary;
+  min-height: 7px;
+  border-radius: 999px;
+}

@@ -1,0 +1,122 @@
+{
+  "fixed-center": true,
+  "layer": "bottom",
+  "position": "top",
+  "height": 0,
+  "spacing": 0,
+
+  "modules-left": [
+    "hyprland/window",
+    "mpris"
+  ],
+
+  "modules-center": [
+    "power-profiles-daemon",
+    "backlight",
+    "backlight/slider", 
+    "hyprland/workspaces",
+    "clock",
+    "pulseaudio"
+    //"custom/amixer"
+  ],
+
+  "modules-right": [
+    "privacy",
+    "tray",
+    "battery",
+    "custom/notification"
+  ],
+
+  "mpris": {
+    "format": "󰇘  {status_icon} {title}",
+    "title-len": 20,
+    "status-icons": { "playing": "  ", "paused": "  " }
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "format-icons": { "default": "󰮯 󰧞󰧞󰧞󰧞󰧞󰧞" }
+  },
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-number": true,
+    "all-outputs": true,
+    "show-special": true,
+    "special-visible-only": true,
+    "persistent-workspaces": { "*": 10 }
+  },
+
+  "hyprland/window": {
+    "format": "{class}",
+    "max-length": 13,
+    "separate-outputs": true,
+    "rewrite": { "": "hyprland" }
+  },
+ 
+  "privacy": { "icon-size": 11 },
+
+  "backlight": { "format": "{percent}" },
+
+  "pulseaudio": {
+    "format-bluetooth": "{icon}<span size='9500' rise='1500'>󰂯</span> {volume}  󰇘 {format_source}",
+    "format-bluetooth-muted": "{icon}<span size='9500' rise='1500'>󰂯</span>   󰇘 {format_source}",
+    "format": "{icon}{volume}  󰇘 {format_source}",
+    "format-muted": "  󰇘 {format_source}",
+    "format-source": " {volume}",
+    "format-source-muted": " ",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "default": ["  ", "   "],
+      "alsa_output.usb-TTGK_USB_HiFi_Audio_5000000001-01.analog-stereo": "   ",
+      "alsa_output.pci-0000_00_1f.3.hdmi-stereo": "    "  
+    },
+    "on-click": "pavucontrol-qt"
+  },
+
+  "tray": {
+    "spacing": 10,
+    "icon-size": 15,
+    "show-passive-items": true
+  },
+
+  "battery": {
+    "states": { "warning": 30, "critical": 20 },
+    "format": "{icon}  {capacity}%",
+    "format-full": "{icon}  {capacity}%",
+    "format-charging": "  {capacity}%",
+    "format-alt": "{icon}  {time}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+
+  "clock": {
+    "format": "{:%R 󰧞 %A %b %d}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>"
+  },
+
+  "custom/notification": {
+    "format": "{icon}",
+    "format-icons": {
+      "notification": " ",
+      "none": " ",
+      "dnd-notification": " ",
+      "dnd-none": " ",
+      "inhibited-notification": " ",
+      "inhibited-none": " ",
+      "dnd-inhibited-notification": " ",
+      "dnd-inhibited-none": " "
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+  //"custom/amixer": { "exec": "~/.config/waybar/scripts/amixerbar.sh" }
+}

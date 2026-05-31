@@ -1,0 +1,40 @@
+#*****************************************************************************
+echo -e "\n>>>> GIVING SYSTEMD-FILES DROP-INS...\n"
+mkdir -p /etc/systemd/logind.conf.d /etc/systemd/sleep.conf.d
+cat <<EOF > /etc/systemd/logind.conf.d/archy-logind.conf
+[Login]
+HandlePowerKey=suspend-then-hibernate
+HandleLidSwitch=suspend-then-hibernate
+EOF
+cat <<EOF > /etc/systemd/sleep.conf.d/archy-sleep.conf
+[Sleep]
+HibernateDelaySec=1800
+EOF
+#******************************************************************************
+echo -e "\n>>>> GIVING HIBERNATION HOOKS (SAFE ORDER)\n"
+mkdir -p /etc/mkinitcpio.conf.d
+cat <<EOF > /etc/mkinitcpio.conf.d/archy-resume.conf
+HOOKS=(base systemd autodetect microcode modconf kms keyboard keymap sd-vconsole block filesystems resume fsck)
+EOF
+#///////////////////////////////////////////////////////////////////////////////
+while true; do
+  if mkinitcpio -P; then
+    clear; echo -e "\n>>>> SUCCESS: completed MKINITCPIO!\n"; break
+  else
+    echo -e "\n>>>> ERROR: errors occured while running MKINITCPIO!\n"
+
+    while true; do
+      read -p "===> RETRY: wanna run MKINITCPIO again? (y/n) = " was
+      echo; was="${was,,}"
+
+      if [[ "$was" == "y" ]]; then
+        clear; break
+      elif [[ "$was" == "n" ]]; then
+        clear; echo -e "\n>>>> ABORT: cancelled MKINITCPIO re-run!\n"; break 2
+      else
+        clear; echo -e "\n$ERRMSG\n"
+      fi
+    done
+  fi
+done
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
