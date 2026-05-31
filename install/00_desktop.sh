@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# conditions for CLEARING: success, retry, abort, errormsg, skip, ongoing
-
 YS="paru -S --needed"
 
 G1="https://github.com/vinceliuice/Tela-circle-icon-theme"
@@ -74,57 +72,10 @@ while true; do
     done
   fi
 done
-#############################################################################
-# while true; do
-#   C1="https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst"
-#   C2="https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst"
-#
-#   echo -e "\n>>>> ADDING CHAOTIC-AUR STUFF...\n"
-#
-#   if
-#     sudo pacman-key --recv-key 3056513887B78AEB --keyserver pgp.mit.edu\
-#     && echo &&\
-#     sudo pacman-key --lsign-key 3056513887B78AEB &&\
-#     echo &&\
-#     sudo pacman -U --needed --noconfirm "$C1" && echo &&\
-#     sudo pacman -U --needed --noconfirm "$C2" && echo; then
-#
-#     clear; echo -e "\n>>>> SUCCESS: configured CHAOTIC-AUR!\n"; break
-#   else
-#     echo -e "\n>>>> ERROR: failed to configure CHAOTIC-AUR!\n"
-#
-#     while true; do
-#       read -p "===> RETRY: retry configuring CHAOTIC-AUR? (y/n) = " chos
-#       echo; chos="${chos,,}"
-#
-#       if [[ "$chos" == "y" ]]; then
-#         clear; break
-#       elif [[ "$chos" == "n" ]]; then
-#         clear; echo -e "\n>>>> ABORT: cancelled CHAOTIC-AUR setup!\n"; break 2
-#       else
-#         clear; echo -e "\n$ERRMSG\n"
-#       fi
-#     done
-#   fi
-# done
-#############################################################################
+
 echo -e "\n>>>> CREATING PACMAN DROP-INS (ZERO TOUCH METHOD)...\n"
 # 1. Create the directory (it usually doesn't exist by default)
 sudo mkdir -p /etc/pacman.d/hooks
-# 2. Create your custom settings file
-# cat <<EOF | sudo tee /etc/pacman.d/custom.conf
-# # [options]
-# # Color
-# # ILoveCandy
-# # VerbosePkgLists
-#
-# [chaotic-aur]
-# Include = /etc/pacman.d/chaotic-mirrorlist
-# EOF
-# 3. Only ONE change to the main file: tell it to look at your new folder
-# grep -qxF 'Include = /etc/pacman.d/*.conf' /etc/pacman.conf ||\
-  # echo 'Include = /etc/pacman.d/*.conf' | sudo tee -a /etc/pacman.conf
-
 # 4. OPTIONAL KDEcache FIX HOOK
 cat <<EOF | sudo tee /etc/pacman.d/hooks/updateKDEcache.hook
 [Trigger]
