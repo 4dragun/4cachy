@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-GIT_DIR="$HOME/4cochy"
+GIT_DIR="$HOME/4cachy"
 
 cd "$GIT_DIR" || { echo -e "\n   * Git Directory not found!\n"; exit; }
 

@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
+PROJ="4cachy"
 
-YS="paru -S --needed"
+YS="paru -S --needed --skipreview"
 
 G1="https://github.com/vinceliuice/Tela-circle-icon-theme"
 G2="https://github.com/NvChad/starter"
-
-PROJ="4cochy" # or whtever LOL.
 
 WALL="$HOME/$PROJ/walls/magician-walks-magical-tree-houses-illustration.jpg"
 
@@ -80,10 +79,6 @@ while true; do
   echo -e "\n>>>> ADDING CHAOTIC-AUR STUFF...\n"
 
   if
-    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com &&\
-    echo &&\
-    sudo pacman-key --lsign-key 3056513887B78AEB &&\
-    echo &&\
     sudo pacman -U --needed --noconfirm "$C1" && echo &&\
     sudo pacman -U --needed --noconfirm "$C2" && echo; then
 
@@ -112,13 +107,13 @@ echo -e "\n>>>> CREATING PACMAN DROP-INS (ZERO TOUCH METHOD)...\n"
 # 1. Create the directory (it usually doesn't exist by default)
 sudo mkdir -p /etc/pacman.d/hooks
 # 2. Create your custom settings file
-cat <<EOF > /etc/pacman.d/meme-custom.conf
+cat <<EOF | sudo tee /etc/pacman.d/meme-custom.conf
 [chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist
 EOF
 # 3. Only ONE change to the main file: tell it to look at your new folder
 grep -qxF 'Include = /etc/pacman.d/*.conf' /etc/pacman.conf ||\
-  echo 'Include = /etc/pacman.d/*.conf' >> /etc/pacman.conf
+  echo 'Include = /etc/pacman.d/*.conf'| sudo tee -a /etc/pacman.conf
 # 4. OPTIONAL KDEcache FIX HOOK
 cat <<EOF | sudo tee /etc/pacman.d/hooks/updateKDEcache.hook
 [Trigger]
@@ -237,7 +232,7 @@ while true; do
             hyprpaper &&\
 
         echo -e "\n>>>> INSTALLING GUI APPLICATIONS...\n" &&\
-        $YS sddm brave-bin emote pavucontrol-qt gwenview rofi-wayland papers\
+        $YS sddm brave-bin pavucontrol-qt gwenview rofi-wayland papers\
             nwg-look blueman qbittorrent swaync neovide kcalc\
             waybar network-manager-applet dolphin swappy systemsettings\
             kdialog zen-browser-bin strawberry mpv mpv-mpris &&\
@@ -254,7 +249,7 @@ while true; do
         echo -e "\n>>>> INSTALLING AUR PACKAGES...\n" &&\
         $YS wvkbd ayugram-desktop-bin surge-bin darkly-bin\
             pixie-sddm-git clipse-wayland-bin emojify-bin\
-            libadwaita-without-adwaita; then
+            libadwaita-without-adwaita-git; then
 
         clear; echo -e "\n>>>> SUCCESS: finished installing APPS & UTILS!\n"
         break 2
