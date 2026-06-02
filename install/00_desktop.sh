@@ -62,6 +62,30 @@ HibernateDelaySec=1800
 EOF
 #############################################################################
 while true; do
+echo -e "\n     SWP CRETION SWP SWPSWPSWPSWPSWPSWPSWPSPWSWPSPWSWPSPWSWPSW\n"
+
+# Check if swap is already active
+if swapon --show | grep -q '/swap/swapfile'; then
+    echo "Swapfile is already active. Exiting."
+    break
+fi
+
+# Pure Wiki implementation
+sudo btrfs subvolume create /swap
+sudo btrfs filesystem mkswapfile --size 16g --uuid clear /swap/swapfile
+sudo swapon /swap/swapfile
+
+# Add to fstab if missing
+if ! grep -q "/swap/swapfile" /etc/fstab; then
+    echo '/swap/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
+fi
+
+echo "Success!"
+
+break
+done
+###########################################################################
+while true; do
   echo -e "\n>>>> RUNNING PACMAN-KEY...\n"
 
   if sudo pacman-key --init && echo && sudo pacman-key --populate archlinux; then
