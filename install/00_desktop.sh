@@ -49,6 +49,18 @@ Numlock=on
 Current=pixie
 EOF
 #############################################################################
+echo -e "\n>>>> GIVING SYSTEMD-FILES DROP-INS...\n"
+sudo mkdir -p /etc/systemd/logind.conf.d /etc/systemd/sleep.conf.d
+cat <<EOF | sudo tee /etc/systemd/logind.conf.d/meme-logind.conf
+[Login]
+HandlePowerKey=suspend-then-hibernate
+HandleLidSwitch=suspend-then-hibernate
+EOF
+cat <<EOF | sudo tee /etc/systemd/sleep.conf.d/meme-sleep.conf
+[Sleep]
+HibernateDelaySec=1800
+EOF
+#############################################################################
 while true; do
   echo -e "\n>>>> RUNNING PACMAN-KEY...\n"
 
