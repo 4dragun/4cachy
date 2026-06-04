@@ -269,7 +269,7 @@ while true; do
 
         echo -e "\n>>>> INSTALLING GUI APPLICATIONS...\n" &&\
         $YS sddm brave-bin pavucontrol-qt gwenview rofi-wayland papers\
-            nwg-look blueman qbittorrent swaync neovide kcalc\
+            nwg-look blueman qbittorrent swaync neovide kcalc grsync\
             waybar network-manager-applet dolphin swappy systemsettings\
             kdialog zen-browser-bin strawberry mpv mpv-mpris &&\
 
