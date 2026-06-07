@@ -283,7 +283,7 @@ while true; do
             intel-gpu-tools &&\
 
         echo -e "\n>>>> INSTALLING AUR PACKAGES...\n" &&\
-        $YS wvkbd ayugram-desktop-bin surge-bin darkly-bin\
+        $YS wvkbd ayugram-desktop darkly-bin\
             pixie-sddm-git clipse-wayland-bin emojify-bin\
             libadwaita-without-adwaita-git; then
 
