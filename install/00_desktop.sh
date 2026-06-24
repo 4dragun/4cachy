@@ -115,6 +115,10 @@ while true; do
   echo -e "\n>>>> ADDING CHAOTIC-AUR STUFF...\n"
 
   if
+    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com &&\
+    echo &&\
+    sudo pacman-key --lsign-key 3056513887B78AEB &&\
+    echo &&\
     sudo pacman -U --needed --noconfirm "$C1" && echo &&\
     sudo pacman -U --needed --noconfirm "$C2" && echo; then
 
