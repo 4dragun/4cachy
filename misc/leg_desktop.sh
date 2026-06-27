@@ -12,6 +12,30 @@ ERRMSG=">>>> ERROR: invalid response! (try y or n)"
 
 clear; cd "$HOME"; echo -e "\n===> WELCOME TO THE POST-INSTALL SCRIPT\n"
 
+#############################################################################
+echo -e "\n>>>> FIXING SOME HARDWARE KEYBOARD KEYS...\n"
+sudo mkdir -pv /etc/keyd; echo
+cat <<EOF | sudo tee /etc/keyd/default.conf
+[ids]
+*
+
+[main]
+f8       = a
+f9       = q
+grave    = tab
+capslock = esc
+
+[shift]
+grave    = ~
+capslock = capslock
+
+f1 = mute
+f2 = volumedown
+f3 = volumeup
+
+f4 = brightnessdown
+f5 = brightnessup
+EOF
 ##############################################################################
 echo -e "\n>>>> CONFIGURING SDDM...\n"
 sudo rm -rf /etc/sddm.conf; echo
@@ -235,7 +259,7 @@ while true; do
     while true; do
       
       if clear && echo -e "\n>>>> INSTALLING INTERNAL DEPENDENCIES...\n" &&\
-        $YS bibata-cursor-theme-bin adw-gtk-theme lua-language-server\
+        $YS keyd bibata-cursor-theme-bin adw-gtk-theme lua-language-server\
             gst-plugins-bad xdg-user-dirs archlinux-xdg-menu &&\
 
         echo -e "\n>>>> INSTALLING FONTS...\n" &&\
@@ -263,7 +287,7 @@ while true; do
             intel-gpu-tools &&\
 
         echo -e "\n>>>> INSTALLING AUR PACKAGES...\n" &&\
-        $YS ayugram-desktop darkly-bin\
+        $YS wvkbd ayugram-desktop darkly-bin\
             pixie-sddm-git clipse-wayland-bin emojify-bin\
             libadwaita-without-adwaita-git; then
 
@@ -299,7 +323,7 @@ echo -e "\n>>>> CREATING XDG DIRECTORIES...\n"
 xdg-user-dirs-update; mkdir -p "$HOME/Pictures/Screenshots"
 
 echo -e "\n>>>> ENABLING SERVICES...\n"
-sudo systemctl enable power-profiles-daemon sddm
+sudo systemctl enable power-profiles-daemon sddm keyd
 
 echo "$WALL" > "$HOME/.cache/last_wall.txt"
 
