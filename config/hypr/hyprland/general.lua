@@ -3,7 +3,7 @@ local colors = require("hyprland.colors")
 hl.config({
     general = {
         gaps_in     = 3,
-        gaps_out    = 7,
+        gaps_out    = 20,
         border_size = 1,
 
         col = {
